@@ -1,0 +1,15 @@
+# SSIS configuration
+# Do not modify this file unless you know what you're doing!
+
+# Version number
+# DO NOT CHANGE OR UNCOMMENT THIS UNLESS YOU HAVE TO!
+
+#ver="version"
+
+# Arguments
+# Add any arguments in this variable.
+# It is your choice if you want to add ", " to the end.
+# Available arguments:
+#   "figlet, " "lame, "
+
+vars="figlet, "
