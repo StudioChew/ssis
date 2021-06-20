@@ -1,5 +1,20 @@
 #!/bin/bash
 # ssis : Simple System Information Script
+# Copyright (C) 2021 StudioChew/roope
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
 # Run "man ssis" for details.
 
 # shellcheck source=/dev/null
@@ -38,7 +53,7 @@ get_args() {
 				printf "ssis %s \\n" "$version"
 				exit
 			;;
-            # This argument is not in --help, because this is only meant to be used by developers, not users.
+			# This argument is not in --help, because this is only meant to be used by developers, not users.
 			"--makeman" )
 				help2man --name "Simple System Information Script" --no-info --output ./ssis.1 --include ./ssis.sh
 			;;
