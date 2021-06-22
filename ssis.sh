@@ -115,8 +115,10 @@ while true; do
 		df -h
 	fi
 
-	printf "Authentication log:\\n"
-	tail -n 10 /var/log/auth.log
+	if [ -e /var/log/auth.log ]; then
+		printf "Authentication log:\\n"
+		tail -n 10 /var/log/auth.log
+	fi
 
 	if [[ $vars != *"lame"* ]]; then
 		fortune -s | cowsay -W 50 -f tux
