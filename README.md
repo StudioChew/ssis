@@ -2,6 +2,7 @@
 Simple System Information Script. Works on Linux. Tested on
 - Arch Linux
 - Raspbian GNU/Linux
+- (K)Ubuntu 21.04
 
 If a distro/OS isn't working, please make an issue!
 ## Installation
