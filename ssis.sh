@@ -97,6 +97,10 @@ while true; do
 		printf "IP address: %s \\n" "$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 	fi
 
+	if command -v curl &> /dev/null; then
+		printf "Public IP: %s \\n" "$(curl -s ifconfig.me)"
+	fi
+
 	printf "Date: "
 	date "%d-%m-%Y %H:%M:%S"
 
