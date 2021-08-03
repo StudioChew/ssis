@@ -31,10 +31,12 @@ usage() {
 	printf "Usage:\\n"
 	# printf doesn't let me add a "-" to the beginning of a string
 	# thanks printf /s
-	printf " --help      Show usage\\n"
-	printf " --version   Show version\\n"
-	printf " -l          Lame mode/disable fortune & cowsay\\n"
-	printf " -f          Enable figlet text banner\\n"
+	printf " --help : Show usage\\n"
+	printf " --version : Show version\\n"
+	printf " --makeman : Generate a manpage for ssis\\n"
+	printf " -l : Lame mode/disable fortune & cowsay\\n"
+	printf " -f : Enable figlet text banner\\n"
+	printf " -p : Show the public IP\\n"
 	exit
 }
 
@@ -55,10 +57,12 @@ get_args() {
 			;;
 			# This argument is not in --help, because this is only meant to be used by developers, not users.
 			"--makeman" )
-				help2man --name "Simple System Information Script" --no-info --output ./ssis.1 --include ./ssis.sh
+				help2man --name="Simple System Information Script" --section=1 --no-info --output=./ssis.1 ./ssis.sh
+				exit
 			;;
 			"-l" ) vars="$vars lame," ;;
 			"-f" ) vars="$vars figlet," ;;
+			"-p" ) vars="$vars publicip," ;;
 		esac
 		shift
 	done
@@ -67,6 +71,11 @@ get_args "$@"
 
 # Get the variables from /etc/os-release. We only use $PRETTY_NAME.
 source /etc/os-release
+
+# Get the Public IP.
+if [[ $vars == *"publicip"* ]]; then
+	pubip="$(curl -s ifconfig.me)"
+fi
 
 while true; do
 	clear
@@ -97,8 +106,8 @@ while true; do
 		printf "IP address: %s \\n" "$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 	fi
 
-	if command -v curl &> /dev/null; then
-		printf "Public IP: %s \\n" "$(curl -s ifconfig.me)"
+	if [[ $vars == *"publicip"* ]] &> /dev/null; then
+		printf "Public IP: %s \\n" "$pubip"
 	fi
 
 	printf "Date: "
